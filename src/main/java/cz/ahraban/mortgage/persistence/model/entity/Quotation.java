@@ -1,14 +1,15 @@
 package cz.ahraban.mortgage.persistence.model.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,19 +21,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Customer {
+public class Quotation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Quotation> quotation;
+    @ManyToOne
+    @JoinColumn(name="customer_id", nullable=false)
+    private Customer customer;
 
-    private String firstName;
-    private String lastName;
-    private String middleName;
-    private String email;
-    private String phoneNumber;
-    private LocalDate birthDate;
+    @OneToOne
+    @JoinColumn(name="subscription_id", nullable = false)
+    private Subscription subscription;
+
+    private LocalDate beginningOfInsurance;
+    private LocalDate dateOfSigningMortgage;
+    private BigDecimal insuredAmount;
+
 }
