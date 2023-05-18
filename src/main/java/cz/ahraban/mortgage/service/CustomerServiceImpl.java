@@ -3,7 +3,7 @@ package cz.ahraban.mortgage.service;
 import java.util.Optional;
 
 import cz.ahraban.mortgage.exception.ApplicationException;
-import cz.ahraban.mortgage.persistence.model.CustomerDO;
+import cz.ahraban.mortgage.persistence.model.DO.CustomerDO;
 import cz.ahraban.mortgage.persistence.model.entity.Customer;
 import cz.ahraban.mortgage.persistence.model.mapper.CustomerMapper;
 import cz.ahraban.mortgage.persistence.repository.CustomerRepository;

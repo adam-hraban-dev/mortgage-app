@@ -1,6 +1,6 @@
 package cz.ahraban.mortgage.persistence.model.mapper;
 
-import cz.ahraban.mortgage.persistence.model.CustomerDO;
+import cz.ahraban.mortgage.persistence.model.DO.CustomerDO;
 import cz.ahraban.mortgage.persistence.model.entity.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

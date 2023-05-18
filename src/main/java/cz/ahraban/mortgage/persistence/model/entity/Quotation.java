@@ -32,7 +32,7 @@ public class Quotation {
     private Customer customer;
 
     @OneToOne
-    @JoinColumn(name="subscription_id", nullable = false)
+    @JoinColumn(name="subscription_id")
     private Subscription subscription;
 
     private LocalDate beginningOfInsurance;
