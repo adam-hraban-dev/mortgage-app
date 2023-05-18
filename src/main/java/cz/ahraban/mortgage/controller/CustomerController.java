@@ -1,6 +1,8 @@
 package cz.ahraban.mortgage.controller;
 
+import cz.ahraban.mortgage.exception.ApplicationException;
 import cz.ahraban.mortgage.persistence.model.CustomerDTO;
+import cz.ahraban.mortgage.persistence.model.mapper.CustomerControllerMapper;
 import cz.ahraban.mortgage.service.CustomerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,41 +26,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
 
     private final CustomerServiceImpl customerService;
-
-    @GetMapping("/hello")
-    String helloWorld(){
-
-        if (true) {
-            throw new IllegalStateException("illegal state");
-        }
-
-        return "Hello-world";
-    }
+    private final CustomerControllerMapper mapper;
 
     @GetMapping("/{id}")
-    CustomerDTO getById(@PathVariable Long id){
-        return null;
+    CustomerDTO getById(@PathVariable Long id) throws ApplicationException {
+        return mapper.toCustomerDTO(customerService.getById(id));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus
-    String update(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
-            System.out.println(customerDTO);
-
-            if (true) {
-                throw new RuntimeException("vyjimka");
-            }
-            return "message received";
+    CustomerDTO update(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) throws ApplicationException {
+            return mapper.toCustomerDTO(customerService.update(id, mapper.toCustomerDO(customerDTO)));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     CustomerDTO create(@RequestBody CustomerDTO customerDTO) {
-       try {
-           return customerService.createCustomer(customerDTO);
-       } catch (Exception e) {
-           System.out.println(e.getMessage());
-           return null;
-       }
+           return mapper.toCustomerDTO(customerService.create(mapper.toCustomerDO(customerDTO)));
     }
 }

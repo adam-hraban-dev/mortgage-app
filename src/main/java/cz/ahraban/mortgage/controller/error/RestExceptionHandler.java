@@ -1,10 +1,7 @@
 package cz.ahraban.mortgage.controller.error;
 
 import cz.ahraban.mortgage.controller.CustomerController;
-import cz.ahraban.mortgage.controller.error.ErrorResponse;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
+import cz.ahraban.mortgage.exception.ApplicationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,9 +15,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice(assignableTypes = CustomerController.class)
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Object> handleRuntimeException(HttpServletRequest req, RuntimeException ex){
+    @ExceptionHandler(ApplicationException.class)
+    public ResponseEntity<Object> handleApplicationException(ApplicationException ex){
+        return buildResponseEntity(new ErrorResponse(ex.getHttpStatus(), ex.getMessage()));
+    }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Object> handleRuntimeException(RuntimeException ex){
         String error = "Request not processed, exception: " + ex.getMessage();
         return buildResponseEntity(new ErrorResponse(HttpStatus.BAD_GATEWAY, error));
     }

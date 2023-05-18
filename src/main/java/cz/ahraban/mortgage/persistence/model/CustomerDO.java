@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class CustomerDO {
 
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String middleName;
