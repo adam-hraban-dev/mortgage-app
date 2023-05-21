@@ -1,17 +1,21 @@
 package cz.ahraban.mortgage.service;
 
+import static cz.ahraban.mortgage.util.ApplicationError.E01;
+import static cz.ahraban.mortgage.util.ApplicationError.E02;
+
 import java.util.Optional;
 
+import cz.ahraban.mortgage.domainapi.domainobject.QuotationDO;
+import cz.ahraban.mortgage.domainapi.entity.Customer;
+import cz.ahraban.mortgage.domainapi.entity.Quotation;
+import cz.ahraban.mortgage.domainapi.mapper.QuotationMapper;
 import cz.ahraban.mortgage.exception.ApplicationException;
-import cz.ahraban.mortgage.persistence.model.DO.QuotationDO;
-import cz.ahraban.mortgage.persistence.model.entity.Customer;
-import cz.ahraban.mortgage.persistence.model.entity.Quotation;
-import cz.ahraban.mortgage.persistence.model.mapper.QuotationMapper;
-import cz.ahraban.mortgage.persistence.repository.CustomerRepository;
-import cz.ahraban.mortgage.persistence.repository.QuotationRepository;
+import cz.ahraban.mortgage.repository.CustomerRepository;
+import cz.ahraban.mortgage.repository.QuotationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 /**
@@ -19,6 +23,7 @@ import org.springframework.util.Assert;
  */
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class QuotationServiceImpl implements QuotationService{
 
     private final QuotationRepository quotationRepository;
@@ -27,11 +32,11 @@ public class QuotationServiceImpl implements QuotationService{
 
     @Override
     public QuotationDO create(final QuotationDO quotationDO) throws ApplicationException {
-        Assert.notNull(quotationDO.getCustomerId(), "No customer ID specified");
+        Assert.notNull(quotationDO.getCustomerId(), E02.getMessage());
 
         Optional<Customer> customerOpt = customerRepository.findById(quotationDO.getCustomerId());
         if (customerOpt.isEmpty()) {
-            throw new ApplicationException("No customer found for ID: " + quotationDO.getCustomerId(), HttpStatus.BAD_REQUEST);
+            throw new ApplicationException(E01.getMessage() + quotationDO.getCustomerId(), HttpStatus.BAD_REQUEST);
         } else {
             Quotation quotation = mapper.toQuotation(quotationDO);
             quotation.setCustomer(customerOpt.get());

@@ -1,8 +1,8 @@
 package cz.ahraban.mortgage.controller;
 
 import cz.ahraban.mortgage.exception.ApplicationException;
-import cz.ahraban.mortgage.persistence.model.QuotationDTO;
-import cz.ahraban.mortgage.persistence.model.mapper.QuotationControllerMapper;
+import cz.ahraban.mortgage.domainapi.QuotationDTO;
+import cz.ahraban.mortgage.domainapi.mapper.QuotationControllerMapper;
 import cz.ahraban.mortgage.service.QuotationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

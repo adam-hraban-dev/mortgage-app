@@ -1,8 +1,8 @@
 package cz.ahraban.mortgage.controller;
 
 import cz.ahraban.mortgage.exception.ApplicationException;
-import cz.ahraban.mortgage.persistence.model.CustomerDTO;
-import cz.ahraban.mortgage.persistence.model.mapper.CustomerControllerMapper;
+import cz.ahraban.mortgage.domainapi.CustomerDTO;
+import cz.ahraban.mortgage.domainapi.mapper.CustomerControllerMapper;
 import cz.ahraban.mortgage.service.CustomerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

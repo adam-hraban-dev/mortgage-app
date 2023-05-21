@@ -1,4 +1,4 @@
-package cz.ahraban.mortgage.persistence.model.entity;
+package cz.ahraban.mortgage.domainapi.entity;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,7 +1,7 @@
-package cz.ahraban.mortgage.persistence.model.mapper;
+package cz.ahraban.mortgage.domainapi.mapper;
 
-import cz.ahraban.mortgage.persistence.model.DO.QuotationDO;
-import cz.ahraban.mortgage.persistence.model.QuotationDTO;
+import cz.ahraban.mortgage.domainapi.domainobject.QuotationDO;
+import cz.ahraban.mortgage.domainapi.QuotationDTO;
 import org.mapstruct.Mapper;
 
 /**

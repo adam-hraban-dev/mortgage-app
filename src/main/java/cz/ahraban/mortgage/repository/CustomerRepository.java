@@ -1,6 +1,6 @@
-package cz.ahraban.mortgage.persistence.repository;
+package cz.ahraban.mortgage.repository;
 
-import cz.ahraban.mortgage.persistence.model.entity.Customer;
+import cz.ahraban.mortgage.domainapi.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

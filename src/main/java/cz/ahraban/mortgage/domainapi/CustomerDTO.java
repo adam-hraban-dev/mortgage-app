@@ -1,4 +1,4 @@
-package cz.ahraban.mortgage.persistence.model;
+package cz.ahraban.mortgage.domainapi;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,5 @@
-package cz.ahraban.mortgage.persistence.model;
+package cz.ahraban.mortgage.domainapi;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
@@ -13,11 +12,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
-public class QuotationDTO {
+public class SubscriptionDTO {
 
     private Long id;
-    private Long customerId;
-    private LocalDate beginningOfInsurance;
-    private LocalDate dateOfSigningMortgage;
-    private BigDecimal insuredAmount;
+    private Long quotationId;
+    private LocalDate startDate;
+    private LocalDate validUntil;
 }

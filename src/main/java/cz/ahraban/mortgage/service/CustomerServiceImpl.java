@@ -1,16 +1,19 @@
 package cz.ahraban.mortgage.service;
 
+import static cz.ahraban.mortgage.util.ApplicationError.E01;
+
 import java.util.Optional;
 
 import cz.ahraban.mortgage.exception.ApplicationException;
-import cz.ahraban.mortgage.persistence.model.DO.CustomerDO;
-import cz.ahraban.mortgage.persistence.model.entity.Customer;
-import cz.ahraban.mortgage.persistence.model.mapper.CustomerMapper;
-import cz.ahraban.mortgage.persistence.repository.CustomerRepository;
+import cz.ahraban.mortgage.domainapi.domainobject.CustomerDO;
+import cz.ahraban.mortgage.domainapi.entity.Customer;
+import cz.ahraban.mortgage.domainapi.mapper.CustomerMapper;
+import cz.ahraban.mortgage.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Adam Hrabaň <a hrej="mailto:adam.hraban@seznam.cz">adam.hraban@seznam.cz</a>
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CustomerServiceImpl implements CustomerService{
 
     private final CustomerRepository customerRepository;
@@ -27,8 +31,8 @@ public class CustomerServiceImpl implements CustomerService{
     public CustomerDO getById(final Long id) throws ApplicationException {
         Optional<Customer> customerOpt = customerRepository.findById(id);
         if (customerOpt.isEmpty()) {
-            log.warn("No customer found for id " + id);
-            throw new ApplicationException("No customer found for id " + id, HttpStatus.BAD_REQUEST);
+            log.warn(E01.getMessage() + id);
+            throw new ApplicationException(E01.getMessage() + id, HttpStatus.BAD_REQUEST);
         } else {
             return mapper.toCustomerDO(customerOpt.get());
         }
@@ -44,8 +48,8 @@ public class CustomerServiceImpl implements CustomerService{
         // find customer
         Optional<Customer> customerOpt = customerRepository.findById(id);
         if (customerOpt.isEmpty()) {
-            log.warn("No customer found for id " + id);
-            throw new ApplicationException("No customer found for id " + id, HttpStatus.BAD_REQUEST);
+            log.warn(E01.getMessage() + id);
+            throw new ApplicationException(E01.getMessage() + id, HttpStatus.BAD_REQUEST);
         } else {
             // update customer
             CustomerDO updatedDO = mapper.toCustomerDO(fromCustomerDO);
