@@ -2,6 +2,7 @@ package cz.ahraban.mortgage.domainapi.domainobject;
 
 import java.time.LocalDate;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -11,6 +12,7 @@ import lombok.Data;
  * @since 0.1.0
  */
 @Data
+@Builder
 public class CustomerDO {
 
     private Long id;

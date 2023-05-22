@@ -3,6 +3,7 @@ package cz.ahraban.mortgage.domainapi;
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -16,6 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
+@Builder
 public class CustomerDTO {
 
     private long id;

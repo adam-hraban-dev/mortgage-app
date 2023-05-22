@@ -34,8 +34,7 @@ public class Quotation {
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 
-    @OneToOne
-    @JoinColumn(name="subscription_id")
+    @OneToOne(mappedBy = "quotation")
     private Subscription subscription;
 
     private LocalDate beginningOfInsurance;
