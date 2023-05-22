@@ -14,5 +14,6 @@ public interface SubscriptionMapper {
     @Mapping(target = "quotationId", source = "quotation.id")
     SubscriptionDO toSubscriptionDO(Subscription subscription);
 
+    @Mapping(target = "quotation", ignore = true)
     Subscription toSubscription(SubscriptionDO subscriptionDO);
 }

@@ -16,7 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Implementation of {@link CustomerService}
+ *
  * @author Adam Hrabaň <a hrej="mailto:adam.hraban@seznam.cz">adam.hraban@seznam.cz</a>
+ * @since 0.1.0
  */
 @Slf4j
 @Service
@@ -27,6 +30,13 @@ public class CustomerServiceImpl implements CustomerService{
     private final CustomerRepository customerRepository;
     private final CustomerMapper mapper;
 
+    /**
+     * Returns customer domain object for provided id
+     *
+     * @param id customer id
+     * @return {@link CustomerDO} for provided id
+     * @throws ApplicationException if no customer is found for provided id
+     */
     @Override
     public CustomerDO getById(final Long id) throws ApplicationException {
         Optional<Customer> customerOpt = customerRepository.findById(id);
@@ -43,6 +53,14 @@ public class CustomerServiceImpl implements CustomerService{
         return mapper.toCustomerDO(customerRepository.save(mapper.toCustomer(customerDO)));
     }
 
+    /**
+     * Updates existing customer
+     *
+     * @param id for customer that should be updated
+     * @param fromCustomerDO change source for customer being updated
+     * @return updated {@link CustomerDO}
+     * @throws ApplicationException if no customer is found for provided id
+     */
     @Override
     public CustomerDO update(Long id, CustomerDO fromCustomerDO) throws ApplicationException {
         // find customer

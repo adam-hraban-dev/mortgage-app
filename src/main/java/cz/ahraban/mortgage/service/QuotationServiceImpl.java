@@ -19,7 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 /**
+ * Implementation of {@link QuotationService}
+ *
  * @author Adam Hrabaň <a hrej="mailto:adam.hraban@seznam.cz">adam.hraban@seznam.cz</a>
+ * @since 0.1.0
  */
 @Service
 @RequiredArgsConstructor

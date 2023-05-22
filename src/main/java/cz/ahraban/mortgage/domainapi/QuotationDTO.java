@@ -8,7 +8,10 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
+ * Quotation data transfer object
+ *
  * @author Adam Hrabaň <a hrej="mailto:adam.hraban@seznam.cz">adam.hraban@seznam.cz</a>
+ * @since 0.1.0
  */
 @AllArgsConstructor
 @Getter

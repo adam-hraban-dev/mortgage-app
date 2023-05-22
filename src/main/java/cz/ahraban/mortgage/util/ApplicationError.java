@@ -1,7 +1,10 @@
 package cz.ahraban.mortgage.util;
 
 /**
+ * Application error codes enum
+ *
  * @author Adam Hrabaň <a hrej="mailto:adam.hraban@seznam.cz">adam.hraban@seznam.cz</a>
+ * @since 0.1.0
  */
 public enum ApplicationError {
 
@@ -10,7 +13,7 @@ public enum ApplicationError {
     E03("No subscription found for id: "),
     E04("No subscription id specified"),
     E05("No quotation found for id: "),
-    E06("No quotation id specified ");
+    E06("No quotation id specified");
 
     private final String errorMessage;
 

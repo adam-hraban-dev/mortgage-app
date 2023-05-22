@@ -7,7 +7,10 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
+ * Customer data transfer object
+ *
  * @author Adam Hrabaň <a hrej="mailto:adam.hraban@openwise.cz">adam.hraban@seznam.cz</a>
+ * @since 0.1.0
  */
 
 @AllArgsConstructor
